@@ -9,5 +9,6 @@ Currently learning Go, any code related advice is welcome.
 - [x] Add methods to use those structures
 - [x] Add a method to print ascii grid
 - [x] Split code in separate packages
+- [ ] Handle errors in a Go fashion way
 - [ ] Implement generations algorithms and methods
 - [ ] Add a method to export the grid as an image
