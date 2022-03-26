@@ -2,30 +2,6 @@ package go_maze_generator
 
 import "math/rand"
 
-type Algorithm interface {
-	init_for(*Grid)
-	is_initialized() bool
-	is_over() bool
-	perform()
-	perform_step()
-}
-
-// ----------------
-
-type Sidewinder struct {
-
-}
-
-func (s Sidewinder) on(grid *Grid) {
-
-}
-
-func (s Sidewinder) step_on(grid *Grid) {
-
-}
-
-// -----------------
-
 type binaryTree struct {
 	grid *Grid
 	current_cell_index int
