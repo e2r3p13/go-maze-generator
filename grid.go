@@ -90,6 +90,20 @@ func (g *Grid) To_s() string {
 	return str
 }
 
-func (g *Grid)apply(alg Algorithm) {
+func (g *Grid)Apply(alg Algorithm) {
+	alg.init_for(g)
+	alg.perform()
+}
 
+func (g *Grid)Apply_step(alg Algorithm) {
+	g.Apply_x_steps(alg, 1)
+}
+
+func (g *Grid)Apply_x_steps(alg Algorithm, x int) {
+	if !alg.is_initialized() {
+		alg.init_for(g)
+	}
+	for i := 0; i < x && !alg.is_over(); i++ {
+		alg.perform_step()
+	}
 }
