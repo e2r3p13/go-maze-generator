@@ -36,6 +36,8 @@ func main() {
 More examples are coming
 
 ## 🔨 Work In Progress
+
+### General
 - [x] Create basic data structures
 - [x] Add methods to use those structures
 - [x] Add a method to print ascii grid
@@ -44,3 +46,17 @@ More examples are coming
 - [ ] Implement generations algorithms and methods
 - [ ] Add a method to export the grid as an image
 - [ ] Write examples
+
+### Algorithms
+- [x] Binary tree
+- [ ] Growing tree
+- [ ] Sidewinder
+- [ ] Aldous-Broder
+- [ ] Wilson
+- [ ] Hunt-and-Kill
+- [ ] Recursive Backtracker
+- [ ] Recursive Division
+- [ ] Krusal
+- [ ] Prim (simplified)
+- [ ] Prim (true)
+- [ ] Eller
