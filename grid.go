@@ -6,6 +6,7 @@ import "time"
 type Grid struct {
 	W int
 	H int
+	generator Algorithm
 	cells []Cell
 }
 
@@ -51,16 +52,18 @@ func (g *Grid) Size() int {
 
 // Initializes the grid by connecting the cells.
 // @linked determines weither the cells are linked by default or not
-func (g *Grid) Initialize(linked bool) {
+func (g *Grid) Initialize(generator Algorithm) {
 	for y := 0; y < g.H; y++ {
 		for x := 0; x < g.W; x++ {
 			cell := g.At(x, y)
-			cell.n = Link {g.At(x, y - 1), linked && g.At(x, y - 1) != nil}
-			cell.s = Link {g.At(x, y + 1), linked && g.At(x, y + 1) != nil}
-			cell.e = Link {g.At(x + 1, y), linked && g.At(x + 1, y) != nil}
-			cell.w = Link {g.At(x - 1, y), linked && g.At(x - 1, y) != nil}
+			cell.n = Link {g.At(x, y - 1), false}
+			cell.s = Link {g.At(x, y + 1), false}
+			cell.e = Link {g.At(x + 1, y), false}
+			cell.w = Link {g.At(x - 1, y), false}
 		}
 	}
+	g.generator = generator
+	generator.init_for(g)
 }
 
 // Returns a string represening the grid with ascii characters
@@ -90,24 +93,20 @@ func (g *Grid) To_s() string {
 	return str
 }
 
-func (g *Grid) Is_fully_generated(alg Algorithm) bool {
-	return alg.is_over()
+func (g *Grid) Is_fully_generated() bool {
+	return g.generator.is_over()
 }
 
-func (g *Grid)Apply(alg Algorithm) {
-	alg.init_for(g)
-	alg.perform()
+func (g *Grid)Generate() {
+	g.generator.perform()
 }
 
-func (g *Grid)Apply_step(alg Algorithm) {
-	g.Apply_x_steps(alg, 1)
+func (g *Grid)Generate_step() {
+	g.Apply_x_steps(1)
 }
 
-func (g *Grid)Apply_x_steps(alg Algorithm, x int) {
-	if !alg.is_initialized() {
-		alg.init_for(g)
-	}
-	for i := 0; i < x && !alg.is_over(); i++ {
-		alg.perform_step()
+func (g *Grid)Apply_x_steps(x int) {
+	for i := 0; i < x && !g.generator.is_over(); i++ {
+		g.generator.perform_step()
 	}
 }
