@@ -90,6 +90,10 @@ func (g *Grid) To_s() string {
 	return str
 }
 
+func (g *Grid) Is_fully_generated(alg Algorithm) bool {
+	return alg.is_over()
+}
+
 func (g *Grid)Apply(alg Algorithm) {
 	alg.init_for(g)
 	alg.perform()

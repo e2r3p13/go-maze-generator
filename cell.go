@@ -19,7 +19,7 @@ func (c *Cell) links() []*Link {
 func (c *Cell) adj_by_link(linked bool) []*Cell {
 	cells := make([]*Cell, 0, 4)
 	for _, l := range c.links() {
-		if l.linked == linked {
+		if l.linked == linked && l.dest != nil {
 			cells = append(cells, l.dest)
 		}
 	}
