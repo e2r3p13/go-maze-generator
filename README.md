@@ -1,6 +1,6 @@
 # go-maze-generator
 
-A Go package to generate mazes, inspired by Jamis Buck, from the book *"Mazes for Programmers"*.
+A Go package to generate mazes, inspired by the *"[Mazes for Programmers](http://www.mazesforprogrammers.com/)"* book, from Jamis Buck.
 
 Currently learning Go, any code related advice is welcome.
 
@@ -25,15 +25,15 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	grid := mazegen.New_grid(16, 16)
-	grid.Initialize(false)
+	algo := mazegen.New_Backtracking()
+	grid.Initialize(algo)
 	
-	var bt = mazegen.New_BinaryTree()
-	grid.Apply(bt)
+	grid.Generate()
 
 	fmt.Println(grid.To_s())
 }
 ```
-More examples are coming
+You can find a complete cli app using the package [here](https://github.com/lfalkau/go-maze-generator/blob/master/examples/main.go).
 
 ## 🔨 Work In Progress
 
@@ -54,7 +54,7 @@ More examples are coming
 - [ ] Aldous-Broder
 - [ ] Wilson
 - [ ] Hunt-and-Kill
-- [ ] Recursive Backtracker
+- [x] Recursive Backtracker
 - [ ] Recursive Division
 - [ ] Krusal
 - [ ] Prim (simplified)
